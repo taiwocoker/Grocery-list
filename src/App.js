@@ -5,7 +5,7 @@ import Alert from './Alert'
 const getLocalStorage = () => {
   let list = localStorage.getItem('list');
   if(list) {
-    return JSON.parse(localStorage.getItem('list'))
+    return (list = JSON.parse(localStorage.getItem('list')))
   }
   else{
     return []
@@ -66,7 +66,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('list', JSON.stringify(list))
-  })
+  },[list])
 
   return (
     <section className='section-center'>
@@ -78,6 +78,7 @@ function App() {
             type='text'
             className='grocery'
             placeholder='e.g cheese'
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <button className='submit-btn' type='submit'>
